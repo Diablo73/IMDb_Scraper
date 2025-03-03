@@ -58,7 +58,7 @@ def transposeData(fullData):
 	for i in range(lengthOfColumn):
 		episodeRow = [f"E{(i + 1):02}"]
 		for j in range(len(fullData)):
-			if i >= fullData[j]["length"]:
+			if i >= fullData[j]["length"] or i >= len(fullData[j]["episodeRatingList"]):
 				episodeRow += [""]
 			else:
 				episodeRow += [getColoredRating(fullData[j]["episodeRatingList"][i])]
@@ -85,7 +85,7 @@ def getColoredRating(rating):
 def getStyColoredText(text, bgHex="#000000", fgHex="#FFFFFF"):
 	r_bg, g_bg, b_bg = hex_to_rgb(bgHex)
 	r_fg, g_fg, b_fg = hex_to_rgb(fgHex)
-	return f"{fg(r_fg, g_fg, b_fg)}{bg(r_bg, g_bg, b_bg)}{text}{rs.fg}{rs.bg}"
+	return f"{fg(r_fg, g_fg, b_fg)}{bg(r_bg, g_bg, b_bg)} {text} {rs.fg}{rs.bg}"
 
 def hex_to_rgb(hex_color):
 	hex_color = hex_color.lstrip("#")
@@ -95,7 +95,8 @@ def hex_to_rgb(hex_color):
 
 
 # TV_SHOW_LIST = ["tt0944947", "tt2560140", "tt0412142"]
-TV_SHOW_LIST = ["tt0988824"]
+TV_SHOW_LIST = ["tt7587890"]
+# TV_SHOW_LIST = ["tt7366338"]
 
 if __name__ == '__main__':
 	print("START!!!")
